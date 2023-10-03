@@ -6,16 +6,12 @@ class Figure:
         self.color = col
         self.vertical_arrangement = vert_arr
         self.horizontal_arrangement = hor_arr
-    color = Color.WHITE
-    vertical_arrangement = 2
-    horizontal_arrangement = 5
 
     def set_color_change(self):
-        if (self.color == "white"):
+        if self.color == "white":
             self.color = "black"
-        elif (self.color == "black"):
+        elif self.color == "black":
             self.color = "white"
-        return None
 
     def set_position(self, vertical, horizontal):
         if 0 < vertical < 9 and 0 < horizontal < 9:
@@ -23,11 +19,8 @@ class Figure:
             self.horizontal_arrangement = horizontal
         return None
 
-    def check_coordinate (self, coordinate):
-        if 0 < coordinate < 9:
-            return True
-        else:
-            return False
+    def check_coordinate(self, coordinate):
+        return 0 < coordinate < 9
 
 class Pawn (Figure):
     def get_check_new_move_pawn(self, vertical, horizontal):
@@ -44,7 +37,8 @@ class Rook (Figure):
     def get_check_new_move_rook(self, vertical, horizontal):
         if not self.check_coordinate(vertical) or not self.check_coordinate(horizontal):
             return False
-        if (vertical != self.vertical_arrangement and horizontal == self.horizontal_arrangement) or (horizontal != self.horizontal_arrangement and vertical == self.vertical_arrangement):
+        if ((vertical != self.vertical_arrangement and horizontal == self.horizontal_arrangement) or
+            (horizontal != self.horizontal_arrangement and vertical == self.vertical_arrangement)):
             return True
         else:
             return False
